@@ -1,0 +1,579 @@
+@font-face {
+    font-family: 'Brandon Grotesque';
+    src: url('../../assets/BrandonGrotesque-Black.woff2') format('woff2'),
+        url('../../assets/BrandonGrotesque-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+:where(html) {
+    --font-size: 1.333rem;
+
+    --gap-1: 0.4em;
+    --gap-2: 0.6em;
+    --gap-3: 0.8em;
+    --gap-4: 1em;
+    --gap-5: 1.2em;
+
+    --hit-gap: var(--gap-1) var(--gap-3) !important;
+    --hit-area-height: max(44px, 2em);
+    --hit-area-width: 10ch;
+    --scrollbar-size: min(8px, 0.8em);
+
+    /* 
+    rgb(var(--black))
+    rgb(var(--black),var(--alpha-1))
+     */
+    --black-rgb: 11, 11, 11;
+    --white-rgb: 255, 255, 255;
+    --black: #0b0b0b;
+    --grey-1: #27272a;
+    --grey-2: #3f3f46;
+    --grey-3: #52525b;
+    --grey-4: #a1a1aa;
+    --white: #ffffff;
+    --red: #ff5555;
+
+    --bg-idle: var(--grey-3);
+    --bg-hover: var(--grey-4);
+    --bg-active: var(--grey-4);
+    --color-placeholder: var(--grey-4);
+
+    --border-radius: 0.2rem;
+    --border-width: 2px;
+    --border-idle: var(--border-width) solid currentColor;
+    --border-hover: var(--border-width) solid var(--grey-2);
+    --border-focus: var(--border-width) solid var(--grey-4);
+
+    --alpha-1: 0.12;
+    --alpha-2: 0.6;
+    --alpha-3: 0.8;
+    --disabled-opacity: var(--alpha-2);
+    --disabled-color: rgba(var(--black-rgb), var(--disabled-opacity));
+
+    --shadow-1: 0 0 6px 2px rgba(var(--black-rgb), var(--alpha-1));
+
+    --z-1: 1;
+    --z-2: 2;
+    --z-3: 3;
+    --z-popper: 10;
+    --z-max: 999;
+
+    --zero: 0 !important;
+    --none: none !important;
+    --transparent: transparent !important;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+    /* fight me */
+    color: currentColor;
+}
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+html {
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    tab-size: 4;
+
+    overflow-y: scroll;
+
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar,
+    & *::-webkit-scrollbar {
+        width: var(--scrollbar-size);
+        height: var(--scrollbar-size);
+    }
+
+    &::-webkit-scrollbar-track,
+    & *::-webkit-scrollbar-track {
+        background-color: var(--white);
+    }
+
+    &::-webkit-scrollbar-corner,
+    & *::-webkit-scrollbar-corner {
+        background-color: var(--red);
+    }
+
+    &::-webkit-scrollbar-thumb,
+    & *::-webkit-scrollbar-thumb {
+        background-color: var(--red);
+        outline: 1px solid var(--transparent);
+    }
+
+    @supports (scrollbar-gutter: stable) {
+        & {
+            overflow-y: auto;
+            scrollbar-gutter: stable;
+            /* scrollbar-gutter: stable both-edges; */
+        }
+    }
+}
+
+body {
+    -webkit-tap-highlight-color: transparent;
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-synthesis: none;
+    font-family: system-ui, sans-serif;
+    font-weight: normal;
+    line-height: inherit;
+
+    /* we used to 1rem = 10px font-size: 62.5%; */
+    font-size: var(--font-size);
+
+    color: var(--black);
+    /* fight me */
+    width: 100%;
+    height: 100%;
+    min-block-size: 100%;
+    min-inline-size: 100%;
+}
+
+/* :is(h1, h2, h3, h4, h5, h6) {
+    font-size: inherit;
+    font-weight: inherit;
+} */
+
+:is(h1, h2, h3) {
+    word-wrap: break-word;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+}
+
+:is(h1, h2, h3):not(.list-item *) {
+    line-height: var(--set-solid);
+}
+
+:is(p) {
+    font-size: var(--font-size);
+
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/font-size-adjust */
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+
+    /* no orphans */
+    text-wrap: pretty;
+
+    &::selection {
+        font-weight: bolder;
+        text-decoration: underline;
+    }
+}
+
+h1:has(span, b),
+p:has(span, b),
+span {
+    font-size: inherit;
+}
+
+b,
+strong {
+    font-weight: bolder;
+}
+
+.bold {
+    text-shadow: 1px 0 0 currentColor;
+}
+
+small {
+    font-size: 80%;
+}
+
+img {
+    border: 0;
+    border-style: none;
+    max-width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+
+    /* fight me */
+    object-fit: cover;
+
+    &[src$='.png'] {
+        background-image: linear-gradient(transparent, rgb(var(--black-rgb)));
+        @media (prefers-color-scheme: dark) {
+            background-image: linear-gradient(transparent, rgb(var(--white-x)));
+        }
+    }
+
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/shape-outside */
+    shape-margin: 0.75rem;
+}
+
+a:is(:not([class])) {
+    hyphens: none;
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.09em;
+    outline: none;
+}
+
+a:is(:visited, :hover) {
+    color: var(--black);
+    /* testing */
+    touch-action: manipulation;
+}
+
+[id],
+:target {
+    scroll-padding-block-start: 2rem;
+}
+
+/* mark external links */
+a[target='_blank']:after {
+    content: 'external link';
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    border: 0 !important;
+    padding: 0 !important;
+    clip-path: inset(100%) !important;
+    clip: rect(0 0 0 0) !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+}
+
+:is(a, button) {
+    /* hot take */
+    cursor: pointer;
+    width: fit-content;
+    & svg {
+        pointer-events: none;
+        /* pointer-events: stroke | fill */
+    }
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+:is(button, select) {
+    text-transform: none;
+}
+
+:is(
+        button,
+        input[type='search'],
+        input[type='text'],
+        input[type='password'],
+        input[type='date'],
+        input[type='radio'],
+        input[type='checkbox'],
+        textarea,
+        select
+    ) {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    font: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    border-style: solid;
+    border: none;
+    padding: 0;
+    color: currentColor;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0);
+    /* Not removed via appearance */
+    margin: 0;
+}
+
+:is(
+        button,
+        input[type='search'],
+        input[type='text'],
+        input[type='password'],
+        input[type='date'],
+        input[type='radio'],
+        input[type='checkbox'],
+        textarea,
+        .link
+    ) {
+    border-radius: var(--border-radius);
+    border: var(--border-idle);
+    padding: var(--hit-gap);
+    transition: 180ms border ease-in-out, 300ms background-color ease-out;
+
+    &:hover {
+        outline: var(--transparent-outline);
+        border: var(--border-hover);
+    }
+
+    &:focus {
+        outline: var(--transparent-outline);
+        border: var(--border-focus);
+    }
+    &:focus-visible {
+        outline: var(--transparent-outline);
+        border: var(--border-focus);
+    }
+    /* 
+    Mouse only
+    .element:focus:not(:focus-visible) {
+        outline: none;
+    } 
+*/
+}
+
+:is(input[type='search'], input[type='password'], input[type='text']) {
+    font-size: max(16px, 1em);
+}
+
+:is(input[type='radio'], input[type='checkbox']) {
+    padding: var(--zero);
+    width: calc(var(--hit-area-width) / 3);
+    height: calc(var(--hit-area-width) / 3);
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+    -webkit-appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+}
+
+input[type='radio'] {
+    border-radius: 50% !important;
+}
+
+input[type='password'] {
+    font-family: Verdana;
+    letter-spacing: 0.125em;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button; /* 1 */
+    font: inherit; /* 2 */
+}
+
+/* :is(input:not(textarea)) {
+    line-height: 1;
+    height: var(--input-hit-area);
+} */
+
+textarea {
+    resize: vertical;
+    field-sizing: content;
+    caret: bar;
+    caret-color: var(--red);
+}
+
+:is(button, input, textarea, select)[disabled],
+:is(button, input, textarea, select):disabled {
+    opacity: var(--disabled-opacity);
+    color: var(--disabled-color);
+    cursor: default;
+    cursor: not-allowed;
+}
+
+input[readonly] {
+    border-style: dotted;
+    box-shadow: none;
+    cursor: not-allowed;
+    color: currentColor;
+}
+
+:is(:-webkit-autofill, :autofill) {
+    /* Some UAs use !important on their autofill declarations */
+    /* See https://mdn.io/autofill for details */
+    color: rgb(var(--black-rgb), var(--alpha-3));
+}
+
+label {
+    font-size: var(--font-size-2);
+    min-width: calc(var(--hit-area-width) / 2.5);
+}
+
+legend {
+    padding: 0;
+}
+
+fieldset,
+output {
+    margin: 0;
+    padding: 0;
+    border-color: transparent;
+}
+
+fieldset > *:not(*:last-child) {
+    margin-bottom: var(--gap-1);
+}
+
+ul {
+    list-style-position: inside;
+}
+
+summary {
+    display: list-item;
+    cursor: pointer;
+    font-weight: bold;
+    list-style-image: url(../../assets/right-arrow.svg);
+}
+
+details[open] > summary {
+    list-style-image: url(../../assets/down-arrow.svg);
+}
+
+summary::-webkit-details-marker {
+    background: url(../../assets/right-arrow.svg);
+    color: transparent;
+}
+
+details[open] > summary::-webkit-details-marker {
+    background: url(../../assets/down-arrow.svg);
+}
+
+dialog {
+    padding: 0;
+}
+
+[hidden]:where(:not([hidden='until-found'])) {
+    display: none;
+}
+
+[inert],
+[inert] * {
+    opacity: var(--disabled-opacity);
+    pointer-events: none;
+    cursor: default;
+    user-select: none;
+}
+
+.group {
+    isolation: isolate;
+    padding: var(--gap-3);
+
+    /* quantity queries */
+    &:has(:nth-child(2):last-child) {
+    }
+    &:has(:nth-child(3):last-child) {
+    }
+    &:has(:nth-child(n + 4)) {
+    }
+
+    &:focus-within {
+        box-shadow: 0 0 0 4px var(--bg-idle);
+    }
+
+    & ::-webkit-input-placeholder {
+        color: currentColor;
+    }
+
+    & ::-ms-input-placeholder {
+        color: currentColor;
+    }
+
+    & ::placeholder-shown {
+        color: currentColor;
+    }
+
+    & *::selection {
+        color: currentColor;
+    }
+
+    @media (any-hover: hover) {
+        &:where(:not(:active):hover) {
+            /* hover effect */
+            color: currentColor;
+        }
+    }
+
+    @supports selector(:has(img)) {
+        & {
+            padding: 0;
+        }
+    }
+
+    @supports not selector(:has(img)) {
+        &.fallback-card-with-image {
+            padding: 0;
+        }
+    }
+}
+
+@view-transition {
+    navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+    * {
+        animation-delay: -1ms;
+        animation-duration: 1ms;
+        animation-iteration-count: 1;
+        background-attachment: initial;
+        scroll-behavior: auto;
+        transition-delay: 0s;
+        transition-duration: 0s;
+    }
+
+    @view-transition {
+        navigation: none;
+    }
+}
+
+@media (scripting: none) {
+    .no-js {
+        display: flex;
+    }
+}
+
+@media (forced-colors: active) {
+    svg {
+        forced-color-adjust: auto;
+    }
+}
+
+@media screen and (-ms-high-contrast: active) {
+    button {
+        border: 2px solid currentcolor;
+    }
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+    outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+    box-shadow: none;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+    height: auto;
+}

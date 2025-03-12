@@ -1,0 +1,9 @@
+.root {
+    vertical-align: middle;
+    overflow: hidden;
+    aspect-ratio: 1;
+    /* 
+        stroke: currentColor;
+        pointer-events: stroke | fill 
+     */
+}

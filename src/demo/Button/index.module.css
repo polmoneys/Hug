@@ -1,0 +1,37 @@
+.root {
+    display: inline-flex;
+
+    &.fitContent {
+        width: fit-content;
+        height: fit-content;
+    }
+    &.stretch {
+        width: 100%;
+    }
+    &.short,
+    &.text {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    &.text {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        &:focus {
+            font-weight: var(--font-bold);
+        }
+    }
+
+    &.icon {
+        max-width: max-content;
+    }
+
+    &.active {
+        background-color: var(--red);
+
+        /* & span {
+            color: white;
+        } */
+    }
+}

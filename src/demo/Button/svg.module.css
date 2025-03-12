@@ -1,0 +1,33 @@
+.svg-button {
+    /* 
+    https://pqina.nl/blog/set-svg-background-image-fill-color/
+     */
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    color: transparent;
+    cursor: pointer;
+    background-color: var(--red-grey-40);
+    transition: background-color 0.2s;
+
+    &:hover,
+    &:focus {
+        background-color: var(--grey-4);
+    }
+
+    &:active {
+        background-color: var(--grey-60);
+    }
+
+    --svg: url('data:image/svg+xml,\
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">\
+            <g stroke-linecap="round" stroke-width="4" stroke="rgb(0, 0, 0)" fill="none">\
+                <circle cx="12" cy="12" r="10"/>\
+                <path d="M7 11 H17"/>\
+            </g>\
+        </svg>');
+
+    -webkit-mask: var(--svg);
+    mask: var(--svg);
+    mask-repeat: no-repeat;
+}

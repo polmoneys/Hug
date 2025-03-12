@@ -1,0 +1,114 @@
+.root {
+    --ratio-square: 1;
+    --ratio-portrait: 9/16;
+    --ratio-landscape: 16/9;
+    --ratio-ultrawide: 18/5;
+    --card-padding: var(--gap-3);
+    --card-selection-bg: var(--black);
+    --card-selection-color: var(--black);
+
+    position: relative;
+
+    background-color: var(--white);
+    border: var(--border-idle);
+    box-shadow: var(--shadow-1);
+    hyphens: auto;
+    word-break: break-word;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 100%;
+
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    &:has(footer):has(:not(header)) {
+        grid-template-rows: 1fr auto;
+    }
+    &:has(header):has(:not(footer)) {
+        grid-template-rows: auto 1fr;
+    }
+
+    &.auto {
+        aspect-ratio: auto;
+    }
+    &.square {
+        aspect-ratio: var(--ratio-square);
+    }
+    &.landscape {
+        aspect-ratio: var(--ratio-landscape);
+    }
+    &.portrait {
+        aspect-ratio: var(--ratio-portrait);
+    }
+    &.ultrawide {
+        aspect-ratio: var(--ratio-ultrawide);
+    }
+
+    & > * {
+        padding: var(--card-padding);
+        min-width: 0;
+        overflow-wrap: break-word;
+    }
+
+    & header,
+    & footer {
+        width: 100%;
+    }
+
+    & header {
+        &:has(svg) {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            place-content: center;
+            place-items: start;
+        }
+        & svg {
+            align-self: center;
+            margin-right: var(--gap-1);
+        }
+    }
+
+    & footer {
+        margin-top: auto;
+    }
+
+    & .content {
+        max-height: 100%;
+        overflow-y: auto;
+    }
+
+    &:has(picture) > *:not(header),
+    &:has(video) > *:not(header) {
+        padding: var(--zero);
+    }
+
+    &:has(img) picture {
+        position: relative;
+        width: 100%;
+    }
+}
+
+.root {
+    &:has(:focus-within) {
+    }
+    &:has(input:focus-visible) {
+    }
+    &:has(input:placeholder-shown) {
+    }
+    &:has(:valid) {
+    }
+    &:has(:invalid) {
+    }
+    &:has(:required) {
+    }
+    &:has(:optional) {
+    }
+    &:has(:checked) {
+    }
+    &::selection {
+        background-color: var(--card-selection-bg);
+        color: var(--card-selection-color);
+    }
+}
