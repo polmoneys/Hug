@@ -5,13 +5,13 @@
     ☆   ✦   ☆   ✦
 ```                            
 
-Harmonious UI Grouping*, `<Hug>`.
+Harmonious UI Grouping 🤗, `<Hug>`.
 
 [Demo](https://polmoneys.github.io/Hug/) 
 
 `<Hug>` allows for `gridTemplateColumns`, `padding`, `width`, `height` and `gap` breakpoint-aware values by embracing CSS custom properties. Accepts props `display` and `flexDirection` so that you can leverage either CSS grid or CSS flexbox...
 
-* 🤗 WIP
+
 
 ## Why Hug
 
