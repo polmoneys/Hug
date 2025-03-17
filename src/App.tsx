@@ -225,7 +225,7 @@ function App() {
             </Hug>
 
             <div style={{ padding: 'var(--gap-3)' }}>
-                <Disclosure summary="Hug.Us gives us">
+                <Disclosure summary="Hug.Us">
                     <Font>
                         Hug two items (or many couples to sync them all)
                     </Font>
