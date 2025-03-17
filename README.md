@@ -5,17 +5,15 @@
     ☆   ✦   ☆   ✦
 ```                            
 
-Harmonious UI Grouping 🤗, `<Hug>`.
+Happy UI Grouping 🤗, `<Hug>`.
 
 [Demo](https://polmoneys.github.io/Hug/) 
 
-`<Hug>` allows for `gridTemplateColumns`, `padding`, `width`, `height` and `gap` breakpoint-aware values by embracing CSS custom properties. Accepts props `display` and `flexDirection` so that you can leverage either CSS grid or CSS flexbox...
-
-
+`<Hug>` allows for `gridTemplateColumns`, `padding`, `width`, `height` and `gap` breakpoint-aware values by embracing CSS custom properties. Accepts props `display` and `flexDirection` so that you can leverage either CSS grid or CSS flex box...
 
 ## Why Hug
 
-Grouping UI is complex. `<Hug/>` encourages teams to nest less markup and use semantic wrappers while providing *responsive sugar*.
+Grouping UI is complex. `<Hug/>` encourages teams to nest less markup and use semantic wrappers while providing **responsive sugar**.
 
 Inspiration:
 
@@ -113,6 +111,27 @@ If you provide `start` or `end` prop to `<Hug>` it assumes you wanna append/prep
 
 ```
 
+
+## Hug two things
+
+`<Hug.Us/>` can be used to make two elements dance together by embracing `flex-wrap:wrap` you can orchestrate beautiful responsive couples.  
+
+Read more about the technique in [Ahmad](https://ishadeed.com/article/responsive-design/#a-basic-example) article. Ahmad, love your work, thanks for sharing `<3`
+
+```ts
+
+<Hug.Us centered gap={{xs:'var(--gap-1)'}}>
+    <label>Search for</label>
+    <TextInput
+        placeholder="Type your search..."
+        id="search"
+        value=""
+        onChange={(value) => console.log({ value })}
+    />
+</Hug.Us>
+
+```
+
 ## Options 
 
 ```ts
@@ -159,23 +178,26 @@ interface SlotsProps {
 
 type HugsComponentProps = SlotsProps | HugProps;
 
+export interface UsProps extends HugProps {
+    centered?: boolean;
+}
+
 ```
 
 
 ### Unrelated work
 
-I do not write much about code, last time was [7 years ago](https://polmoneys.github.io/). Funny the subject is kinda of the same. At that time I was creating complex gamified experiences, lots of *Art and Visuals* made of *CSS* at a time where `IE8` was fading out, slowly. These past few years I've been working with financial data, dashboards, complex tables and search filters and what not for a classic Swiss Private Bank. 
+I do not write much about code, last time was [7 years ago](https://polmoneys.github.io/). Funny the subject is kinda of the same. At that time I was creating complex gamified experiences, lots of **Art and Visuals** made of **CSS** at a time where `IE8` was fading out, slowly. These past few years I've been working with financial data, dashboards, complex tables and search filters and what not for a classic Swiss Private Bank. 
 
-One thing I've learned, interfaces are *soft* so we should try to speak about them like them are cute & puffy and meant to be introduced to new people.
+One thing I've learned, interfaces are **soft* d* so we should try to speak about them like them are cute & puffy and meant to be introduced to new people. Please meet Sparkline [charts](https://github.com/polmoneys/Sparkline) and [StrokeDashOffset](https://github.com/polmoneys/StrokeDashoffset)
 
-Please meet Sparkline [charts](https://github.com/polmoneys/Sparkline) and [StrokeDashOffset](https://github.com/polmoneys/StrokeDashoffset)
 
 ### Inspiration 💐
 
 > Our requirements are more modest but at the same time more responsible: 
 > buildings, furniture, drinking glasses may well be consumer items that 
 > we can destroy without regret after they have served for some short or 
-> long period, but while we use them we expect them to fullfill their role and serve us perfectly, so perfectly that we can also derive aesthetic 
+> long period, but while we use them we expect them to fulfill their role and serve us perfectly, so perfectly that we can also derive aesthetic 
 > enjoyment from observing them in use. 
 
 Erik Gunnar Asplund on **Swedish Grace**.
