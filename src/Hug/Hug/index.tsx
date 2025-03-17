@@ -53,6 +53,10 @@ export default function Hugger({
         '--hug-flex-direction': flexDirection,
     } as CSSProperties;
 
+    const style = has(dangerous)
+        ? { ...dangerous, ...customStyle }
+        : customStyle;
+
     const layoutClass = display === 'grid' ? styles.grid : styles.flex;
 
     if (isValidElement(children)) {
@@ -64,16 +68,14 @@ export default function Hugger({
         return cloneElement(child, {
             ...rest,
             className: childClassName,
-            style: has(dangerous)
-                ? { ...dangerous, ...customStyle }
-                : customStyle,
+            style,
         });
     }
 
     return (
         <Component
             className={clsx(styles.hug, layoutClass)}
-            style={customStyle}
+            style={style}
             {...rest}
         >
             {children}
