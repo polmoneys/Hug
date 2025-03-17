@@ -20,7 +20,8 @@ export type Unit =
     | `calc(${string})`
     | 'center'
     | 'none'
-    | 'grid';
+    | 'grid'
+    | 'wrap';
 
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type ResponsiveProp<T> = Partial<Record<Breakpoint, T>>;
@@ -52,3 +53,7 @@ export interface SlotsProps {
 }
 
 export type HugsComponentProps = SlotsProps | HugProps;
+
+export interface UsProps extends HugProps {
+    centered?: boolean;
+}
