@@ -476,6 +476,10 @@ dialog {
         box-shadow: 0 0 0 4px var(--bg-idle);
     }
 
+    &:has(button:hover) {
+        box-shadow: 0 0 0 4px var(--bg-idle);
+    }
+
     & ::-webkit-input-placeholder {
         color: currentColor;
     }

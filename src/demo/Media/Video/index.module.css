@@ -63,6 +63,12 @@ video.video {
         object-fit: cover;
         object-position: center center;
     }
+    & *:focus-visible {
+        outline: none;
+        border: none;
+
+        filter: hue-rotate(120deg);
+    }
 }
 
 .controls {

@@ -1,0 +1,21 @@
+.root {
+    background-color: var(--clip-fill, var(--red));
+    clip-path: var(--clip-path);
+    -webkit-clip-path: var(--clip-path);
+    width: fit-content;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    place-content: center;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: var(--clip-hover-fill, var(--clip-fill, var(--red)));
+    }
+
+    & .child {
+        transform: scale(var(--clip-scale, 0.9));
+        display: block;
+        transition: transform 0.3s ease;
+    }
+}

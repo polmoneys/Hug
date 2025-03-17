@@ -9,11 +9,20 @@ import Hug from './Hug';
 import Card from './demo/Card';
 import Disclosure from './demo/Disclosure';
 
-const Ico = <Icon label="" name="heart" />;
+const HeartIcon = <Icon label="" name="heart" />;
 
 function App() {
     return (
         <Fragment>
+            <div style={{ padding: 'var(--gap-3)' }}>
+                <Disclosure summary="Hug">
+                    <Font>
+                        Breakpoint-aware critical values for layout.{' '}
+                        <a href="https://github.com/polmoneys/Hug">Github</a>
+                    </Font>
+                </Disclosure>
+            </div>
+
             <Hug
                 width={{
                     xs: '100%',
@@ -53,7 +62,7 @@ function App() {
                             </Card>
 
                             <Card ratio="portrait">
-                                <Card.Title icon={Ico}>
+                                <Card.Title icon={HeartIcon}>
                                     <Font>Lorem ipsun</Font>
                                 </Card.Title>
                                 <Card.Media
@@ -107,7 +116,7 @@ function App() {
                                 alt="Plant landscape"
                                 src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=2873&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             />
-                            <Card.Title icon={Ico}>
+                            <Card.Title icon={HeartIcon}>
                                 <Font>Lorem ipsun</Font>
                             </Card.Title>
                         </Card>
@@ -130,6 +139,15 @@ function App() {
                             }}
                         />
                     </Hug>
+
+                    <div style={{ padding: 'var(--gap-3)' }}>
+                        <Disclosure summary="Slots">
+                            <Font>
+                                Hug one item (think List item or SearchBar...)
+                                with `start` or `end` props.
+                            </Font>
+                        </Disclosure>
+                    </div>
 
                     <Hug
                         gradient="var(--grey-3) 0, var(--grey-3) 100px, var(--grey-4) 100px, var(--grey-4) calc(100% - 100px), var(--grey-2) calc(100% - 100px),var(--grey-2) 100%"
@@ -205,6 +223,55 @@ function App() {
                     </Hug>
                 </main>
             </Hug>
+
+            <div style={{ padding: 'var(--gap-3)' }}>
+                <Disclosure summary="Hug.Us gives us">
+                    <Font>
+                        Hug two items (or many couples to sync them all)
+                    </Font>
+                </Disclosure>
+            </div>
+            <Hug
+                padding={{
+                    xs: 'var(--gap-2)',
+                }}
+                display="flex"
+                flexDirection="column"
+            >
+                <form>
+                    <Hug gap={{ xs: 'var(--gap-4)' }}>
+                        <Hug.Us centered>
+                            <label>Search for</label>
+                            <TextInput
+                                placeholder="Type your search..."
+                                id="search"
+                                value=""
+                                onChange={(value) => console.log({ value })}
+                            />
+                        </Hug.Us>
+
+                        <Hug.Us dangerous={{ maxWidth: '220px' }}>
+                            <label>Search for</label>
+                            <TextInput
+                                placeholder="Type your search..."
+                                id="search"
+                                value=""
+                                onChange={(value) => console.log({ value })}
+                            />
+                        </Hug.Us>
+                        <Hug.Us dangerous={{ maxWidth: '220px' }} centered>
+                            <label>Search for</label>
+                            <TextInput
+                                placeholder="Type your search..."
+                                id="search"
+                                value=""
+                                onChange={(value) => console.log({ value })}
+                            />
+                        </Hug.Us>
+                    </Hug>
+                </form>
+            </Hug>
+
             <div style={{ padding: 'var(--gap-3)' }}>
                 <Disclosure summary="Demo details">
                     <Font>
@@ -220,6 +287,7 @@ function App() {
                         are doing anything beyond just solving the problem - you
                         don't understand how fucked the whole thing is. No one
                         gives a fuck about the glib object model.
+                        <br />
                         <Font.Bold inherit as="b">
                             Ryan Dahl
                         </Font.Bold>

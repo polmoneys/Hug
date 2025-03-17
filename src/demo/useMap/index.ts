@@ -1,6 +1,19 @@
 import { useReducer } from 'react';
 import mapReducer from './reducer';
 
+/**
+    Use:
+    
+    const {
+        selections,
+        addObject,
+        deleteObject,
+        addObjectsFromArray,
+        toggleObject,
+    } = useMap<Selection>()
+
+ */
+
 const useMap = <T extends { id: string }>() => {
     const [state, dispatch] = useReducer(mapReducer, {
         selections: new Map<string, T>(),
