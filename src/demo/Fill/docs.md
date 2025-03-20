@@ -3,7 +3,6 @@
 ```ts
 
 const MyShape = (
-  // This can be any valid SVG shape.
   <rect x="0" y="0" width="300" height="100" />
 );
      <FillGraph

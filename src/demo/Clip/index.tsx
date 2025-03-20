@@ -8,7 +8,7 @@ import styles from './Clip.module.css';
 export default function Clip({
     variant,
     children,
-    fill = 'red',
+    fill = 'var(--red)',
     hoverFill,
     scale = 0.9,
 }: ClipProps) {

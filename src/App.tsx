@@ -31,12 +31,12 @@ function App() {
                     xs: 'var(--gap-2)',
                     lg: 'var(--gap-4)',
                 }}
-                display="grid"
+                display={{ xs: 'grid' }}
                 gap={{ xs: 'var(--gap-4)' }}
             >
                 <main>
                     <Hug
-                        display="grid"
+                        display={{ xs: 'grid' }}
                         padding={{ xs: 0 }}
                         gap={{ xs: 'var(--gap-2)', md: 'var(--gap-3)' }}
                         gridTemplateColumns={{
@@ -92,7 +92,7 @@ function App() {
                     </Hug>
 
                     <Hug
-                        display="grid"
+                        display={{ xs: 'grid' }}
                         gap={{ xs: 'var(--gap-2)', md: 'var(--gap-3)' }}
                         gridTemplateColumns={{
                             xs: '1fr',
@@ -235,7 +235,7 @@ function App() {
                 padding={{
                     xs: 'var(--gap-2)',
                 }}
-                display="flex"
+                display={{ xs: 'flex' }}
                 flexDirection="column"
             >
                 <form>

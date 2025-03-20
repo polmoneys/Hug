@@ -312,14 +312,12 @@ Remove the inheritance of text transform in Edge and Firefox.
         border: var(--border-hover);
     }
 
-    &:focus {
-        outline: var(--transparent-outline);
-        border: var(--border-focus);
-    }
+    &:focus,
     &:focus-visible {
         outline: var(--transparent-outline);
         border: var(--border-focus);
     }
+
     /* 
     Mouse only
     .element:focus:not(:focus-visible) {
