@@ -9,7 +9,7 @@ Happy UI Grouping 🤗, `<Hug>`.
 
 [Demo](https://polmoneys.github.io/Hug/) 
 
-`<Hug>` allows for `gridTemplateColumns`, `padding`, `width`, `height` and `gap` breakpoint-aware values by embracing CSS custom properties. Accepts props `display` and `flexDirection` so that you can leverage either CSS grid or CSS flex box...
+`<Hug>` allows for `display`, `gridTemplateColumns`, `padding`, `width`, `height` and `gap` breakpoint-aware values by embracing CSS custom properties. 
 
 ## Why Hug
 
@@ -26,7 +26,7 @@ The most virtuous way to `<Hug>` content is by providing your own children wrapp
 ```ts
 
 <Hug 
-    display="grid"  
+    display={{ xs:'grid' }}
     gap={{ xs: 'var(--gap-2)', md: 'var(--gap-4)' }}
     gridTemplateColumns={{
         xs: '1fr',
@@ -52,7 +52,7 @@ If you don't provide a wrapper but multiple children `<Hug>` will wrap them with
 
 <Hug 
     component="main"
-    display="grid"  
+    display={{ xs:'grid' }}
     gridTemplateColumns={{
         xs: '1fr',
         md: '1fr 1fr',
@@ -151,7 +151,7 @@ type Unit =
     | `calc(${string})`;
 
 interface HugProps extends HTMLAttributes<HTMLDivElement> {
-    display?: 'grid' | 'flex';
+    padding?: ResponsiveProp<DisplayType>;    
     flexDirection?: 'row' | 'column';
     padding?: ResponsiveProp<Unit>;
     gap?: ResponsiveProp<Unit>;
@@ -174,7 +174,6 @@ interface SlotsProps {
     gradient?: string;
     style?: Record<string, Unit>;
 }
-
 
 type HugsComponentProps = SlotsProps | HugProps;
 
