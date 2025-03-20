@@ -2,6 +2,7 @@ import { HTMLAttributes, ReactNode } from 'react';
 
 export type LooseAutocomplete<T extends string> = T | Omit<string, T>;
 export const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
+export type DisplayType = 'flex' | 'grid' | 'none';
 
 export type Unit =
     | 0
@@ -19,15 +20,13 @@ export type Unit =
     | `${string}vw`
     | `calc(${string})`
     | 'center'
-    | 'none'
-    | 'grid'
     | 'wrap';
 
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type ResponsiveProp<T> = Partial<Record<Breakpoint, T>>;
 
 export interface HugProps extends HTMLAttributes<HTMLDivElement> {
-    display?: 'grid' | 'flex';
+    display?: ResponsiveProp<DisplayType>;
     flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
     padding?: ResponsiveProp<Unit>;
     gap?: ResponsiveProp<Unit>;

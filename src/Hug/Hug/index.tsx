@@ -1,11 +1,11 @@
 import { CSSProperties, isValidElement, cloneElement } from 'react';
-import { HugProps } from '../interfaces';
+import { DisplayType, HugProps, Unit } from '../interfaces';
 import { clsx, computeResponsiveValues, has } from '../utils';
 
 import styles from './Hug.module.css';
 
 export default function Hugger({
-    display = 'flex',
+    display,
     flexDirection = 'row',
     padding,
     gap,
@@ -17,14 +17,20 @@ export default function Hugger({
     dangerous,
     ...rest
 }: HugProps) {
-    const widthValues = computeResponsiveValues(width);
-    const heightValues = computeResponsiveValues(height);
-    const paddingValues = computeResponsiveValues(padding);
-    const gapValues = computeResponsiveValues(gap);
+    const displayValues = computeResponsiveValues<DisplayType>(display);
+    const widthValues = computeResponsiveValues<Unit>(width);
+    const heightValues = computeResponsiveValues<Unit>(height);
+    const paddingValues = computeResponsiveValues<Unit>(padding);
+    const gapValues = computeResponsiveValues<Unit>(gap);
     const gridTemplateColumnsValues =
-        computeResponsiveValues(gridTemplateColumns);
+        computeResponsiveValues<Unit>(gridTemplateColumns);
 
     const customStyle: CSSProperties = {
+        '--hug-display': displayValues.xs,
+        '--hug-display-sm': displayValues.sm,
+        '--hug-display-md': displayValues.md,
+        '--hug-display-lg': displayValues.lg,
+        '--hug-display-xl': displayValues.xl,
         '--hug-width': widthValues.xs,
         '--hug-width-sm': widthValues.sm,
         '--hug-width-md': widthValues.md,
@@ -57,14 +63,10 @@ export default function Hugger({
         ? { ...dangerous, ...customStyle }
         : customStyle;
 
-    const layoutClass = display === 'grid' ? styles.grid : styles.flex;
-
     if (isValidElement(children)) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const child = children as React.ReactElement<any>;
-        const childClassName = child.props.className
-            ? clsx(child.props.className, styles.hug, layoutClass)
-            : clsx(styles.hug, layoutClass);
+        const childClassName = clsx(child.props.className, styles.hug);
         return cloneElement(child, {
             ...rest,
             className: childClassName,
@@ -73,11 +75,7 @@ export default function Hugger({
     }
 
     return (
-        <Component
-            className={clsx(styles.hug, layoutClass)}
-            style={style}
-            {...rest}
-        >
+        <Component className={styles.hug} style={style} {...rest}>
             {children}
         </Component>
     );

@@ -3,7 +3,6 @@ import {
     HugsComponentProps,
     ResponsiveProp,
     SlotsProps,
-    Unit,
 } from './interfaces';
 
 export const has = <T>(value: T | undefined): value is T => value !== undefined;
@@ -21,24 +20,16 @@ export const isSlotsProps = (
 
 const breakpointsOrder: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
-export function computeResponsiveValues(
-    valueMap?: ResponsiveProp<Unit>
-): Record<Breakpoint, Unit | ''> {
-    const result: Partial<Record<Breakpoint, Unit | ''>> = {};
-    let lastValue: Unit | '' = '';
+export function computeResponsiveValues<T>(
+    valueMap?: ResponsiveProp<T>
+): Record<Breakpoint, T | ''> {
+    const result: Partial<Record<Breakpoint, T | ''>> = {};
+    let lastValue: T | '' = '';
     for (const bp of breakpointsOrder) {
         if (valueMap && valueMap[bp] !== undefined) {
             lastValue = valueMap[bp]!;
         }
         result[bp] = lastValue;
     }
-    return result as Record<Breakpoint, Unit | ''>;
-}
-
-export function removeStyle(selector: string, property: string) {
-    const el: HTMLElement | null = document.querySelector(selector);
-
-    if (el) {
-        el.style.removeProperty(property);
-    }
+    return result as Record<Breakpoint, T | ''>;
 }
