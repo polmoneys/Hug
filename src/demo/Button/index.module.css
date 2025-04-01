@@ -1,5 +1,43 @@
 .root {
-    display: inline-flex;
+    --extra: 32px;
+    --start: var(--extra);
+    --end: var(--extra);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    &.hasStart {
+        grid-template-columns: var(--start) minmax(0, 1fr);
+    }
+    &.hasEnd {
+        grid-template-columns: minmax(0, 1fr) var(--end);
+    }
+
+    & span {
+        min-width: 0;
+        display: grid;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &.hasStart *:first-child,
+    &.hasEnd *:last-child {
+        display: inline-grid;
+
+        overflow: visible;
+    }
+    &.hasStart *:first-child {
+        width: var(--start) !important;
+        place-self: center;
+    }
+    &.hasEnd *:last-child {
+        width: var(--end) !important;
+        place-self: center;
+    }
+    &.hasStart.hasEnd {
+        grid-template-columns: var(--start) minmax(0, 1fr) var(--end);
+    }
 
     &.fitContent {
         width: fit-content;
@@ -22,16 +60,60 @@
             font-weight: var(--font-bold);
         }
     }
+    &.textUnderline {
+        text-decoration: underline;
+        text-decoration-skip-ink: auto;
+        text-decoration-thickness: 0.1em;
+        text-underline-offset: 0.3em;
+        border: none !important;
 
+        &:hover,
+        &:active {
+            background-color: transparent !important;
+            border: none !important;
+            text-decoration: underline;
+            text-decoration-skip-ink: auto;
+            text-decoration-thickness: 0.1em;
+            text-underline-offset: 0.3em;
+        }
+    }
+
+    &.pill {
+        border: none !important;
+        background-color: transparent;
+        font-weight: var(--font-bold);
+        border-radius: 18px;
+        &:hover,
+        &:active {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            color: var(--white) !important;
+            & svg {
+                fill: var(--white) !important;
+            }
+        }
+    }
     &.icon {
         max-width: max-content;
     }
 
     &.active {
         background-color: var(--red);
-
         /* & span {
             color: white;
         } */
+    }
+}
+
+@media (max-width: 600px) {
+    .root {
+        grid-template-columns: 1fr !important;
+        background-image: none;
+        &.hasStart *:first-child {
+            display: none !important;
+        }
+
+        &.hasEnd {
+            grid-template-columns: 1fr var(--end) !important;
+        }
     }
 }

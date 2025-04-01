@@ -3,11 +3,11 @@ import './App.css';
 import Shape from './demo/Shape';
 import Font from './demo/Font';
 import TextInput from './demo/Input/Text';
-import Button from './demo/Button';
 import Icon from './demo/Icon';
 import Hug from './Hug';
 import Card from './demo/Card';
 import Disclosure from './demo/Disclosure';
+import Button from './demo/Button';
 
 const HeartIcon = <Icon label="" name="heart" />;
 
@@ -155,9 +155,6 @@ function App() {
                         startWidth="100px"
                         end={<Shape.Square size={48} fill="var(--white)" />}
                         endWidth="100px"
-                        style={{
-                            minHeight: '80px',
-                        }}
                     >
                         <Font
                             clamp={2}
@@ -173,7 +170,11 @@ function App() {
 
                     <Hug
                         gradient="var(--grey-4), var(--grey-4) 100px, transparent 100px,transparent 100%"
-                        start={<label>Lorem:</label>}
+                        start={
+                            <label style={{ width: 'fit-content' }}>
+                                Lorem:
+                            </label>
+                        }
                         startWidth="100px"
                     >
                         <TextInput
@@ -184,13 +185,13 @@ function App() {
                         />
                     </Hug>
                     <Hug
-                        gradient="var(--white), var(--white) calc(100% - 100px), var(--grey-2) calc(100% - 100px),var(--grey-2) 100%"
+                        gradient="var(--white), var(--white) calc(100% - 140px), var(--grey-2) calc(100% - 140px),var(--grey-2) 100%"
                         end={
-                            <Button dangerousColor="var(--white)" short>
-                                Lorem
-                            </Button>
+                            <Button.Text dangerousColor="var(--white)" short>
+                                Search
+                            </Button.Text>
                         }
-                        endWidth="100px"
+                        endWidth="140px"
                     >
                         <TextInput
                             placeholder="Type your search..."
@@ -200,18 +201,14 @@ function App() {
                         />
                     </Hug>
                     <Hug
-                        gradient="var(--red) 0, var(--red) 60px, var(--grey-4) 60px,var(--grey-4) calc(100% - 100px), var(--red) calc(100% - 100px),var(--red) 100%"
+                        gradient="var(--red) 0, var(--red) 80px, var(--grey-4) 80px,var(--grey-4) calc(100% - 100px), var(--red) calc(100% - 100px),var(--red) 100%"
                         start={
                             <Button.Icon>
                                 <Icon name="star" label="" />
                             </Button.Icon>
                         }
-                        startWidth="60px"
-                        end={
-                            <Button.Icon>
-                                <Icon name="bookmark" label="" />
-                            </Button.Icon>
-                        }
+                        startWidth="80px"
+                        end={<Button.TextUnderline>Yes</Button.TextUnderline>}
                         endWidth="100px"
                     >
                         <TextInput
@@ -237,10 +234,16 @@ function App() {
                 }}
                 display={{ xs: 'flex' }}
                 flexDirection="column"
+                gap={{ xs: 'var(--gap-4)' }}
             >
                 <form>
-                    <Hug gap={{ xs: 'var(--gap-4)' }}>
-                        <Hug.Us centered>
+                    <Hug
+                        component={'div'}
+                        gap={{ xs: 'var(--gap-4)' }}
+                        flexDirection="row"
+                        dangerous={{ alignItems: 'end' }}
+                    >
+                        <Hug.Us centered gap={{ xs: 'var(--gap-1)' }}>
                             <label>Search for</label>
                             <TextInput
                                 placeholder="Type your search..."
@@ -250,7 +253,10 @@ function App() {
                             />
                         </Hug.Us>
 
-                        <Hug.Us dangerous={{ maxWidth: '220px' }}>
+                        <Hug.Us
+                            dangerous={{ maxWidth: '220px' }}
+                            gap={{ xs: 'var(--gap-1)' }}
+                        >
                             <label>Search for</label>
                             <TextInput
                                 placeholder="Type your search..."
@@ -259,7 +265,11 @@ function App() {
                                 onChange={(value) => console.log({ value })}
                             />
                         </Hug.Us>
-                        <Hug.Us dangerous={{ maxWidth: '220px' }} centered>
+                        <Hug.Us
+                            dangerous={{ maxWidth: '220px' }}
+                            centered
+                            gap={{ xs: 'var(--gap-1)' }}
+                        >
                             <label>Search for</label>
                             <TextInput
                                 placeholder="Type your search..."
@@ -269,6 +279,18 @@ function App() {
                             />
                         </Hug.Us>
                     </Hug>
+                    <Button start={<Icon name="star" label="" />}>
+                        Hello{' '}
+                    </Button>
+
+                    <Button end={<Icon name="star" label="" />}>Hello </Button>
+
+                    <Button
+                        start={<Icon name="star" label="" />}
+                        end={<Icon name="star" label="" />}
+                    >
+                        Hello{' '}
+                    </Button>
                 </form>
             </Hug>
 
