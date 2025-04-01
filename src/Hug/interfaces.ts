@@ -19,7 +19,10 @@ export type Unit =
     | `${string}vh`
     | `${string}vw`
     | `calc(${string})`
+    | 'start'
     | 'center'
+    | 'end'
+    | 'fit-content'
     | 'wrap';
 
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -36,11 +39,6 @@ export interface HugProps extends HTMLAttributes<HTMLDivElement> {
     component?: React.ElementType;
     dangerous?: Record<string, Unit>;
     children?: ReactNode;
-}
-
-export interface SlotsProps {
-    children: string | ReactNode;
-    description?: string;
     start?: ReactNode;
     startWidth?: Unit;
     startHeight?: Unit;
@@ -48,10 +46,9 @@ export interface SlotsProps {
     endWidth?: Unit;
     endHeight?: Unit;
     gradient?: string;
-    style?: Record<string, Unit>;
+    ml?: boolean;
+    mr?: boolean;
 }
-
-export type HugsComponentProps = SlotsProps | HugProps;
 
 export interface UsProps extends HugProps {
     centered?: boolean;

@@ -1,11 +1,11 @@
-import Hugger from '../Hug';
+import Hug from '..';
 import { UsProps } from '../interfaces';
 
 export default function Us(props: UsProps) {
     const { centered, dangerous, ...rest } = props;
 
     return (
-        <Hugger
+        <Hug
             {...rest}
             dangerous={{
                 ...(dangerous !== undefined && { ...dangerous }),

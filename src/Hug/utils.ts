@@ -1,22 +1,8 @@
-import {
-    Breakpoint,
-    HugsComponentProps,
-    ResponsiveProp,
-    SlotsProps,
-} from './interfaces';
+import { Breakpoint, ResponsiveProp } from './interfaces';
 
 export const has = <T>(value: T | undefined): value is T => value !== undefined;
 export const clsx = (...params: unknown[]): string =>
     params.filter(Boolean).join(' ');
-
-export const isSlotsProps = (
-    props: HugsComponentProps
-): props is SlotsProps => {
-    return (
-        ('start' in props && props.start !== undefined) ||
-        ('end' in props && props.end !== undefined)
-    );
-};
 
 const breakpointsOrder: Breakpoint[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
