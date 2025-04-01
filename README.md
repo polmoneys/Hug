@@ -149,22 +149,17 @@ type Unit =
     | `${string}vh`
     | `${string}vw`
     | `calc(${string})`;
-
-interface HugProps extends HTMLAttributes<HTMLDivElement> {
-    padding?: ResponsiveProp<DisplayType>;    
-    flexDirection?: 'row' | 'column';
+export interface HugProps extends HTMLAttributes<HTMLDivElement> {
+    display?: ResponsiveProp<DisplayType>;
+    flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
     padding?: ResponsiveProp<Unit>;
     gap?: ResponsiveProp<Unit>;
+    gridTemplateColumns?: ResponsiveProp<Unit>;
     width?: ResponsiveProp<Unit>;
     height?: ResponsiveProp<Unit>;
-    gridTemplateColumns?: ResponsiveProp<Unit>;
     component?: React.ElementType;
+    dangerous?: Record<string, Unit>;
     children?: ReactNode;
-}
-
-interface SlotsProps {
-    children: string | ReactNode;
-    description?: string;
     start?: ReactNode;
     startWidth?: Unit;
     startHeight?: Unit;
@@ -172,10 +167,9 @@ interface SlotsProps {
     endWidth?: Unit;
     endHeight?: Unit;
     gradient?: string;
-    style?: Record<string, Unit>;
+    ml?: boolean;
+    mr?: boolean;
 }
-
-type HugsComponentProps = SlotsProps | HugProps;
 
 export interface UsProps extends HugProps {
     centered?: boolean;
