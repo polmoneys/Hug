@@ -312,10 +312,15 @@ Remove the inheritance of text transform in Edge and Firefox.
         border: var(--border-hover);
     }
 
-    &:focus,
-    &:focus-visible {
+    &:focus {
         outline: var(--transparent-outline);
         border: var(--border-focus);
+    }
+
+    &:focus-visible {
+        outline-offset: 0.25em;
+        outline-width: 0.25em;
+        outline-color: currentColor;
     }
 
     /* 
@@ -325,6 +330,29 @@ Remove the inheritance of text transform in Edge and Firefox.
     } 
 */
 }
+/* 
+
+
+ if you might have an invalid selector being passed to :has(), you can use the same :has(:is()) trick to prevent it from breaking.
+
+One interesting variation on this behavior is the :where() selector, which behaves exactly the same as the :is() selector, except it always has zero specificity.
+
+:where(.border-thick) {
+  border-color: var(--color-border-subtle);
+  border-style: solid;
+}
+
+.border-thick {
+  border-width: var(--size-border-thick);
+}
+
+:where([class^='border-'], [class*=' border-']) {
+  border-color: var(--color-border-base);
+  border-style: solid;
+  border-width: 0;
+}
+
+*/
 
 :is(input[type='search'], input[type='password'], input[type='text']) {
     font-size: max(16px, 1em);

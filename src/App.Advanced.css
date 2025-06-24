@@ -1,0 +1,64 @@
+label {
+    --selected: 0;
+    grid-template-columns: auto calc(var(--selected) * 20px);
+}
+label svg {
+    opacity: var(--selected);
+}
+label:has(:checked) {
+    --selected: 1;
+}
+/*
+  <nav class="menu">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#help">Help</a>
+  </nav>
+*/
+.menu {
+    --g: 0;
+    display: flex;
+    gap: calc(var(--g) * 20px);
+    transition: gap 0.25s ease;
+}
+.menu:has(:focus-within) {
+    --g: 1;
+}
+
+/*
+  <label class="summary">
+    <input type="checkbox" class="toggle">
+    <strong>Show details</strong>
+    <div class="details">
+      <p>Here are the juicy details that slide down.</p>
+    </div>
+  </label>
+*/
+.summary {
+    --open: 0;
+    display: grid;
+    grid-template-rows: auto 0px;
+    transition: grid-template-rows 0.3s ease;
+}
+.summary:has(.toggle:checked) {
+    --open: 1;
+    /* expands from 0px to 200px */
+    grid-template-rows: auto calc(var(--open) * 200px);
+}
+
+/*
+--red-if-togglersalltrue:
+    var(--tog1)
+    var(--tog2)
+    var(--tog3)
+    red;
+    
+--red-if-anytogglertrue:
+    var(--tog1,
+        var(--tog2,
+            var(--tog3)
+        )
+    )
+    red;
+*/
