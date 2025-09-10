@@ -182,7 +182,7 @@ export interface UsProps extends HugProps {
 
 I do not write much about code, last time was [7 years ago](https://polmoneys.github.io/). Funny the subject is kinda of the same. At that time I was creating complex gamified experiences, lots of **Art and Visuals** made of **CSS** at a time where `IE8` was fading out, slowly. These past few years I've been working with financial data, dashboards, complex tables and search filters and what not for a classic Swiss Private Bank. 
 
-One thing I've learned, interfaces are **soft* d* so we should try to speak about them like them are cute & puffy and meant to be introduced to new people. Please meet Sparkline [charts](https://github.com/polmoneys/Sparkline) and [StrokeDashOffset](https://github.com/polmoneys/StrokeDashoffset)
+One thing I've learned, interfaces are **soft** so we should try to speak about them like them are cute & puffy and meant to be introduced to new people. Please meet Sparkline [charts](https://github.com/polmoneys/Sparkline) and [StrokeDashOffset](https://github.com/polmoneys/StrokeDashoffset)
 
 
 ### Inspiration 💐
